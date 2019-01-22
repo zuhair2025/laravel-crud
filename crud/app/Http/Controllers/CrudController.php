@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
 use Illuminate\Http\Request;
 
 class CrudController extends Controller
@@ -36,6 +37,19 @@ class CrudController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,array(
+            'name'=>'required|max:255',
+            'mobile'=>'required',
+            'email'=>'required'
+        ));
+        $contact = new Contact;
+         $contact->name = $request->name;
+         $contact->mobile = $request->mobile;
+         $contact->email = $request->email;
+
+         $contact->save();
+         return redirect()->route('crud.show',$contact->id);
+
     }
 
     /**
@@ -47,6 +61,8 @@ class CrudController extends Controller
     public function show($id)
     {
         //
+        $contact = Contact::find($id);
+        return view('welcome')->withContact($contact);
     }
 
     /**

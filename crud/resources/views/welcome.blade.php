@@ -39,6 +39,11 @@
                     </tr>
                     </thead>
                     </tbody>
+                    <tr>
+                        <td>{{$contact->name}}}</td>
+                        <td>{{$contact->mobile}}}</td>
+                        <td>{{$contact->email}}}</td>
+                    </tr>
                 </table>
             </div>
         </div>
